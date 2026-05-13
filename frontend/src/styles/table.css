@@ -1,0 +1,119 @@
+.table-container {
+  background: var(--md-sys-color-surface);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th {
+  background-color: var(--md-sys-color-surface-dim);
+  color: var(--md-sys-color-on-surface);
+  font-weight: 600;
+  text-align: left;
+  padding: 16px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.table-container td {
+  padding: 16px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-on-surface);
+  font-size: 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table-container tbody tr {
+  transition: all 0.2s ease;
+}
+
+.table-container tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.04);
+}
+
+.table-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.table-actions button {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.table-actions .btn-edit {
+  background-color: #6366f1;
+  color: white;
+  box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+}
+
+.table-actions .btn-edit:hover {
+  background-color: #4f46e5;
+  box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+  transform: translateY(-1px);
+}
+
+.table-actions .btn-delete {
+  background-color: #ef4444;
+  color: white;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+.table-actions .btn-delete:hover {
+  background-color: #dc2626;
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Tablet layout */
+@media (max-width: 1024px) {
+  .table-container {
+    border-radius: 12px;
+  }
+
+  .table-container td,
+  .table-container th {
+    padding: 12px;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .table-container {
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .table-container th {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .table-container td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .table-actions {
+    gap: 4px;
+  }
+
+  .table-actions button {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}

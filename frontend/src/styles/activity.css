@@ -1,0 +1,136 @@
+.activity-page {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.activity-page h1 {
+  color: var(--md-sys-color-on-surface);
+  margin-bottom: 32px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.activity-table {
+  background: var(--md-sys-color-surface);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.activity-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.activity-table th {
+  background-color: var(--md-sys-color-surface-dim);
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.activity-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-on-surface);
+  font-size: 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.activity-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.activity-table tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.04);
+}
+
+.activity-type {
+  font-size: 14px;
+}
+
+.activity-type.payment {
+  color: #1e40af;
+}
+
+.activity-type.login {
+  color: #15803d;
+}
+
+.activity-type.logout {
+  color: #b91c1c;
+}
+
+.activity-type.voucher_used {
+  color: #15803d;
+}
+
+.activity-type.device_online {
+  color: #15803d;
+}
+
+.activity-type.device_offline {
+  color: #b91c1c;
+}
+
+.activity-type.settings_changed {
+  color: #92400e;
+}
+
+/* Tablet layout */
+@media (max-width: 1024px) {
+  .activity-page {
+    padding: 24px;
+  }
+
+  .activity-page h1 {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .activity-table th,
+  .activity-table td {
+    padding: 12px;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .activity-page {
+    padding: 16px;
+  }
+
+  .activity-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .activity-table {
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+
+  .activity-table th {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .activity-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .activity-type {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}

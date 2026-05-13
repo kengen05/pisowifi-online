@@ -1,0 +1,234 @@
+.devices-page {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.devices-page h1 {
+  color: var(--md-sys-color-on-surface);
+  margin-bottom: 32px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.device-form {
+  background: var(--md-sys-color-surface);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.device-form .form-group {
+  margin-bottom: 0;
+}
+
+.device-form button {
+  grid-column: 1 / -1;
+  background-color: #6366f1;
+  color: white;
+  box-shadow: 0 3px 6px rgba(99, 102, 241, 0.3);
+}
+
+.device-form button:hover {
+  background-color: #4f46e5;
+  box-shadow: 0 6px 12px rgba(99, 102, 241, 0.4);
+}
+
+.devices-table {
+  background: var(--md-sys-color-surface);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.devices-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.devices-table th {
+  background-color: var(--md-sys-color-surface-dim);
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.devices-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-on-surface);
+  font-size: 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+
+.devices-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.devices-table tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.04);
+}
+
+/* Cell-specific styling */
+.status-cell {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.status-cell.online {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+}
+
+.status-cell.offline {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.session-status-cell {
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  text-align: left;
+  text-decoration: none;
+}
+
+.session-status-cell.running {
+  color: #22c55e;
+}
+
+.session-status-cell.paused {
+  color: #6b7280;
+}
+
+.remaining-time-cell {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  color: var(--md-sys-color-primary);
+  font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.no-data {
+  text-align: center;
+  color: var(--md-sys-color-outline);
+  padding: 24px 16px;
+  font-style: italic;
+}
+
+.action-cell {
+  text-align: center;
+  padding: 12px 16px;
+}
+
+.btn-delete {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.btn-delete:hover {
+  background-color: #dc2626;
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+.btn-delete:active {
+  background-color: #b91c1c;
+  transform: scale(0.98);
+}
+
+/* Tablet layout */
+@media (max-width: 1024px) {
+  .devices-page {
+    padding: 24px;
+  }
+
+  .devices-page h1 {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .device-form {
+    padding: 24px;
+    margin-bottom: 32px;
+    gap: 16px;
+  }
+
+  .devices-table th,
+  .devices-table td {
+    padding: 12px;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .devices-page {
+    padding: 16px;
+  }
+
+  .devices-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .device-form {
+    padding: 20px;
+    margin-bottom: 24px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .device-form button {
+    grid-column: auto;
+  }
+
+  .devices-table {
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+
+  .devices-table th {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .devices-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+}

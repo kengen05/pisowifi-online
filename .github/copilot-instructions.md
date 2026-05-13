@@ -1,0 +1,8 @@
+- [x] Scaffold backend (Node.js + Express)
+- [x] Scaffold frontend (React)
+- [x] Setup database schema and models
+- [x] Create API endpoints for payments, vouchers, activity
+- [x] Build admin portal components
+- [ ] Integrate QR PH payment API
+- [ ] Setup authentication and authorization
+- [ ] Test and compile project

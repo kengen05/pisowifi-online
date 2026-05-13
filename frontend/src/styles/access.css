@@ -1,0 +1,299 @@
+.access-portal-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family:
+    "Roboto",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Oxygen",
+    sans-serif;
+}
+
+.access-portal-container.granted {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.access-portal-container.restricted {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.access-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 48px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.access-card.success-card {
+  border-top: 4px solid #28a745;
+}
+
+.access-card.restricted-card {
+  border-top: 4px solid #f5576c;
+}
+
+.access-card.error-card {
+  border-top: 4px solid #ff9800;
+}
+
+.status-icon {
+  font-size: 72px;
+  margin-bottom: 24px;
+  display: block;
+  animation: fadeInScale 0.5s ease;
+}
+
+.status-icon.warning {
+  font-size: 64px;
+}
+
+.status-icon.error {
+  font-size: 64px;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.access-card h1 {
+  color: var(--md-sys-color-on-surface);
+  font-size: 28px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.access-card .description {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 16px;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.session-info {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.info-item .label {
+  color: var(--md-sys-color-on-surface-variant);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.info-item .value {
+  color: var(--md-sys-color-on-surface);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.info-item .value.mac {
+  font-family: "Courier New", monospace;
+  background-color: #e9ecef;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.redirect-text {
+  color: #667eea;
+  font-size: 13px;
+  font-style: italic;
+  margin-top: 12px;
+}
+
+.restriction-info {
+  background-color: #fff3cd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: left;
+  border-left: 4px solid #ffc107;
+}
+
+.info-title {
+  color: #856404;
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.info-list {
+  color: #856404;
+  font-size: 13px;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.info-list li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.device-info {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.device-info p {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.device-info strong {
+  color: var(--md-sys-color-on-surface);
+  font-weight: 600;
+}
+
+.mac-address {
+  font-family: "Courier New", monospace;
+  background-color: #e9ecef;
+  padding: 12px;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 12px 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--md-sys-color-on-surface);
+}
+
+.mac-note {
+  font-size: 12px;
+  color: #999;
+  margin-top: 8px;
+  margin-bottom: 0 !important;
+}
+
+.btn-purchase,
+.btn-retry {
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  margin-bottom: 20px;
+}
+
+.btn-purchase:hover,
+.btn-retry:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #653a8a 100%);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-purchase:active,
+.btn-retry:active {
+  transform: translateY(0);
+}
+
+.footer-text {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .access-card {
+    padding: 32px 24px;
+  }
+
+  .status-icon {
+    font-size: 56px;
+  }
+
+  .access-card h1 {
+    font-size: 24px;
+  }
+
+  .session-info {
+    padding: 16px;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .mac-address {
+    font-size: 11px;
+    word-break: break-all;
+  }
+}
+
+@media (max-width: 480px) {
+  .access-portal-container {
+    padding: 12px;
+  }
+
+  .access-card {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  .status-icon {
+    font-size: 48px;
+  }
+
+  .access-card h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .session-info {
+    padding: 12px;
+  }
+
+  .restriction-info {
+    padding: 16px;
+  }
+}
