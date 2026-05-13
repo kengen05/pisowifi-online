@@ -1,0 +1,47 @@
+name: Deploy to Docker VM
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Docker Images"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Docker VM
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DOCKER_VM_SSH_KEY }}
+          DOCKER_VM_HOST: ${{ secrets.DOCKER_VM_HOST }}
+          DOCKER_VM_USER: ${{ secrets.DOCKER_VM_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $DOCKER_VM_HOST >> ~/.ssh/known_hosts
+          
+          ssh $DOCKER_VM_USER@$DOCKER_VM_HOST << 'EOF'
+            cd /opt/pisowifi-online
+            git pull origin main
+            
+            # Load environment variables
+            if [ -f .env ]; then
+              export $(cat .env | grep -v '^#' | xargs)
+            fi
+            
+            # Recreate containers with latest images
+            docker-compose -f docker-compose.prod.yml pull
+            docker-compose -f docker-compose.prod.yml up -d
+            
+            # Show status
+            docker-compose -f docker-compose.prod.yml ps
+          EOF
+
+      - name: Deployment Success
+        run: echo "✅ Successfully deployed to Docker VM"
