@@ -39,40 +39,68 @@ services:
       - pisowifi-network
     restart: unless-stopped
 
-  app:
-    image: codehubit/pisowifi:latest
-    container_name: pisowifi-app
+  redis:
+    image: redis:7-alpine
+    container_name: pisowifi-redis
     ports:
-      - "80:80"
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - pisowifi-network
+    healthcheck:
+      test: redis-cli ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pisowifi-backend
+    ports:
       - "5000:5000"
     environment:
       NODE_ENV: production
       PORT: 5000
       MONGODB_URI: mongodb://admin:password123@mongodb:27017/pisowifi?authSource=admin
+      REDIS_URI: redis://redis:6379
       JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-me}
       QR_PH_API_KEY: ${QR_PH_API_KEY:-}
       QR_PH_API_URL: ${QR_PH_API_URL:-https://api.qrph.com}
+      # Omada Controller Configuration
+      OMADA_HOST: ${OMADA_HOST:-}
+      OMADA_PORT: ${OMADA_PORT:-8043}
+      OMADA_USERNAME: ${OMADA_USERNAME:-}
+      OMADA_PASSWORD: ${OMADA_PASSWORD:-}
+      OMADA_SITE_ID: ${OMADA_SITE_ID:-default}
+      OMADA_USE_HTTPS: ${OMADA_USE_HTTPS:-true}
     depends_on:
       mongodb:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     networks:
       - pisowifi-network
     restart: unless-stopped
     healthcheck:
-      test: wget -q -O /dev/null http://localhost/ || exit 1
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test: curl -f http://localhost:5000/api/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
-  watchtower:
-    image: containrrr/watchtower:latest
-    container_name: pisowifi-watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      WATCHTOWER_CLEANUP: "true"
-      WATCHTOWER_POLL_INTERVAL: 300
-    command: --interval 300 pisowifi-app mongo-express
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pisowifi-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
     networks:
       - pisowifi-network
     restart: unless-stopped
@@ -80,6 +108,7 @@ services:
 volumes:
   mongodb_data:
   mongodb_config:
+  redis_data:
 
 networks:
   pisowifi-network:
