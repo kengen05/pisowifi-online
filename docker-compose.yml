@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   mongodb:
@@ -39,10 +39,11 @@ services:
       - pisowifi-network
     restart: unless-stopped
 
-  backend:
-    image: kengen05/pisowifi-backend:latest
-    container_name: pisowifi-backend
+  app:
+    image: codehubit/pisowifi:latest
+    container_name: pisowifi-app
     ports:
+      - "80:80"
       - "5000:5000"
     environment:
       NODE_ENV: production
@@ -54,22 +55,6 @@ services:
     depends_on:
       mongodb:
         condition: service_healthy
-    networks:
-      - pisowifi-network
-    restart: unless-stopped
-    healthcheck:
-      test: wget -q -O /dev/null http://localhost:5000/api/health || exit 1
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  frontend:
-    image: kengen05/pisowifi-frontend:latest
-    container_name: pisowifi-frontend
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
     networks:
       - pisowifi-network
     restart: unless-stopped
@@ -87,7 +72,7 @@ services:
     environment:
       WATCHTOWER_CLEANUP: "true"
       WATCHTOWER_POLL_INTERVAL: 300
-    command: --interval 300 pisowifi-backend pisowifi-frontend mongo-express
+    command: --interval 300 pisowifi-app mongo-express
     networks:
       - pisowifi-network
     restart: unless-stopped

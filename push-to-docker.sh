@@ -22,13 +22,14 @@ if [ -z "$DOCKER_TOKEN" ]; then
     echo ""
 fi
 
-DOCKER_USERNAME="kengen05"
+DOCKER_USERNAME="codehubit"
+IMAGE_NAME="pisowifi"
 
-echo -e "${BLUE}Building images...${NC}"
-docker-compose build
+echo -e "${BLUE}Building Docker image...${NC}"
+docker build -t "$DOCKER_USERNAME/$IMAGE_NAME:latest" .
 
 if [ $? -ne 0 ]; then
-    echo -e "${RED}Error building images${NC}"
+    echo -e "${RED}Error building Docker image${NC}"
     exit 1
 fi
 
@@ -42,29 +43,19 @@ if [ $? -ne 0 ]; then
 fi
 
 echo ""
-echo -e "${BLUE}Pushing backend image...${NC}"
-docker push "$DOCKER_USERNAME/pisowifi-backend:latest"
+echo -e "${BLUE}Pushing image to Docker Hub...${NC}"
+docker push "$DOCKER_USERNAME/$IMAGE_NAME:latest"
 
 if [ $? -ne 0 ]; then
-    echo -e "${RED}Error pushing backend image${NC}"
-    exit 1
-fi
-
-echo ""
-echo -e "${BLUE}Pushing frontend image...${NC}"
-docker push "$DOCKER_USERNAME/pisowifi-frontend:latest"
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error pushing frontend image${NC}"
+    echo -e "${RED}Error pushing image${NC}"
     exit 1
 fi
 
 echo ""
 echo -e "${GREEN}=== ✅ Successfully pushed to Docker Hub ===${NC}"
 echo ""
-echo -e "${BLUE}Images available at:${NC}"
-echo "  Backend:  https://hub.docker.com/r/$DOCKER_USERNAME/pisowifi-backend"
-echo "  Frontend: https://hub.docker.com/r/$DOCKER_USERNAME/pisowifi-frontend"
+echo -e "${BLUE}Image available at:${NC}"
+echo "  https://hub.docker.com/r/$DOCKER_USERNAME/$IMAGE_NAME"
 echo ""
 echo -e "${BLUE}Watchtower will auto-update containers within 5 minutes${NC}"
 echo ""

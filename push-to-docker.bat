@@ -20,14 +20,15 @@ if "!DOCKER_TOKEN!"=="" (
     set /p DOCKER_TOKEN=^> 
 )
 
-set DOCKER_USERNAME=kengen05
+set DOCKER_USERNAME=codehubit
+set IMAGE_NAME=pisowifi
 
 echo.
-echo Building images...
-docker-compose build
+echo Building Docker image...
+docker build -t !DOCKER_USERNAME!/!IMAGE_NAME!:latest .
 
 if errorlevel 1 (
-    echo Error building images
+    echo Error building Docker image
     pause
     exit /b 1
 )
@@ -43,21 +44,11 @@ if errorlevel 1 (
 )
 
 echo.
-echo Pushing backend image...
-docker push !DOCKER_USERNAME!/pisowifi-backend:latest
+echo Pushing image to Docker Hub...
+docker push !DOCKER_USERNAME!/!IMAGE_NAME!:latest
 
 if errorlevel 1 (
-    echo Error pushing backend image
-    pause
-    exit /b 1
-)
-
-echo.
-echo Pushing frontend image...
-docker push !DOCKER_USERNAME!/pisowifi-frontend:latest
-
-if errorlevel 1 (
-    echo Error pushing frontend image
+    echo Error pushing image
     pause
     exit /b 1
 )
@@ -65,10 +56,7 @@ if errorlevel 1 (
 echo.
 echo === ✅ Successfully pushed to Docker Hub ===
 echo.
-echo Images available at:
-echo   Backend:  https://hub.docker.com/r/!DOCKER_USERNAME!/pisowifi-backend
-echo   Frontend: https://hub.docker.com/r/!DOCKER_USERNAME!/pisowifi-frontend
-echo.
-echo Watchtower will auto-update containers within 5 minutes
+echo Image available at:
+echo   https://hub.docker.com/r/!DOCKER_USERNAME!/!IMAGE_NAME!
 echo.
 pause
