@@ -21,7 +21,7 @@ if "!DOCKER_TOKEN!"=="" (
 )
 
 set DOCKER_USERNAME=codehubit
-set IMAGE_NAME=pisowifi
+set IMAGE_NAME=pisowifi-online
 
 echo.
 echo Building Docker image...

@@ -43,6 +43,7 @@ app.use("/api/devices", require("./routes/devices"));
 app.use("/api/packages", require("./routes/packages"));
 app.use("/api/access", require("./routes/access"));
 app.use("/api/client", require("./routes/client"));
+app.use("/api/omada", require("./routes/omada"));
 
 // Health Check
 app.get("/api/health", (req, res) => {

@@ -23,7 +23,7 @@ if [ -z "$DOCKER_TOKEN" ]; then
 fi
 
 DOCKER_USERNAME="codehubit"
-IMAGE_NAME="pisowifi"
+IMAGE_NAME="pisowifi-online"
 
 echo -e "${BLUE}Building Docker image...${NC}"
 docker build -t "$DOCKER_USERNAME/$IMAGE_NAME:latest" .

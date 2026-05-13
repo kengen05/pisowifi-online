@@ -36,6 +36,9 @@ export default function Navbar() {
         <li>
           <a href="/activity">Activity</a>
         </li>
+        <li>
+          <a href="/omada">Omada</a>
+        </li>
       </ul>
       <div className="navbar-user">
         <span>{user?.name}</span>

@@ -56,7 +56,12 @@ export default function Register() {
         <form onSubmit={handleSubmit}>
           {renderInput("name", "Full Name", "text", "Your name")}
           {renderInput("email", "Email", "email", "Enter your email")}
-          {renderInput("password", "Password", "password", "Enter your password")}
+          {renderInput(
+            "password",
+            "Password",
+            "password",
+            "Enter your password",
+          )}
           {renderInput("phone", "Phone", "tel", "09XXXXXXXXX")}
           {renderInput("shopName", "Shop Name", "text", "Your shop name")}
           {renderInput("address", "Address", "text", "Your shop address")}

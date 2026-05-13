@@ -16,6 +16,7 @@ import Vouchers from "./pages/Vouchers";
 import Activity from "./pages/Activity";
 import Devices from "./pages/Devices";
 import Packages from "./pages/Packages";
+import OmadaController from "./pages/OmadaController";
 import Navbar from "./components/Navbar";
 import "./App.css";
 
@@ -88,17 +89,28 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/packages"
-            element={
-              <ProtectedRoute>
-                <>
-                  <Navbar />
-                  <Packages />
-                </>
-              </ProtectedRoute>
-            }
-          />
+           <Route
+             path="/packages"
+             element={
+               <ProtectedRoute>
+                 <>
+                   <Navbar />
+                   <Packages />
+                 </>
+               </ProtectedRoute>
+             }
+           />
+           <Route
+             path="/omada"
+             element={
+               <ProtectedRoute>
+                 <>
+                   <Navbar />
+                   <OmadaController />
+                 </>
+               </ProtectedRoute>
+             }
+           />
         </Routes>
       </div>
     </Router>
